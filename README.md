@@ -12,7 +12,7 @@ No more custom views, fragments and complex lifecycle handling!
 
 ## Animations
 
-The page animations are all down using the `graphicsLayer` modifier at the page composable. It calculates the offset of that specific page relative to the current active page, and apply transformations.
+The page animations are all done using the `graphicsLayer` modifier at the page composable. It calculates the offset of that specific page relative to the current active page, and apply transformations.
 
 ```
  Card(
@@ -48,7 +48,7 @@ The page animations are all down using the `graphicsLayer` modifier at the page 
     )
 ```
 
-I am not a mathematician, and I am no longer having a mathematician coworker with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs.
+I am not a mathematician, and I am no longer having some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs.
 
 
 ## Just download and run it!
