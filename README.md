@@ -12,7 +12,7 @@ No more custom views, fragments and complex lifecycle handling!
 
 ## Animations
 
-The page animations are all done using the `graphicsLayer` modifier at the page composable. It calculates the offset of that specific page relative to the current active page, and apply transformations.
+The page animations are all done using the `graphicsLayer` modifier at the page composable. It calculates the offset of that specific page relative to the current active page, and applies transformations.
 
 ```
  Card(
