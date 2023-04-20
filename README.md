@@ -14,12 +14,6 @@ No more custom views, adapters, fragments and complex lifecycle handling!
 
 The page animations are all done using the `graphicsLayer` modifier at the page composable. It calculates the offset of that specific page relative to the current active page, and applies transformations.
 
-To make the page composable cleaner and not tied to the pager & animations, I have defined a custom `Modifier.pagerAnimation()` modifier which is equivalent to the followings at:
-package `com.rwmobi.composepager.ui.components.CardAnimationModifier`. 
-
-At the `HorizontalPager()` we only have to apply this modifier to the pageContent composable, even without a need to pass the pagerState to the page composable, to make the coupling looser. 
-
-
 ```
  Card(
         modifier = modifier
@@ -53,6 +47,12 @@ At the `HorizontalPager()` we only have to apply this modifier to the pageConten
             }
     )
 ```
+
+To make the page composable cleaner and not tied to the pager & animations, I have defined a custom `Modifier.pagerAnimation()` modifier which is equivalent to the followings at:
+package `com.rwmobi.composepager.ui.components.CardAnimationModifier`. 
+
+At the `HorizontalPager()` we only have to apply this modifier to the pageContent composable, even without a need to pass the pagerState to the page composable, to make the coupling looser. 
+
 
 I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs.
 
