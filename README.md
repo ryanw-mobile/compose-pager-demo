@@ -1,7 +1,7 @@
 # Jetpack Compose Horizontal Pager Animation Demo
 
 <p align="center">
-  <img src="screenshot_20230420_012120.png" width="400" />
+  <img src="greggs.gif" width="400" />
 </p>
 
 This is a demo app demonstrating the official Jetpack Compose Horizontal Pager.
