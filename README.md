@@ -48,7 +48,7 @@ The page animations are all done using the `graphicsLayer` modifier at the page 
     )
 ```
 
-I am not a mathematician, and I am no longer having some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs.
+I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs.
 
 
 ## Just download and run it!
