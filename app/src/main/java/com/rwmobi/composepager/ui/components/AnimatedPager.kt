@@ -29,9 +29,12 @@ internal fun AnimatedViewPager(
         verticalAlignment = Alignment.CenterVertically,
     ) { thisPageIndex ->
         PageLayout(
-            modifier = Modifier.size(size = pageSize),
-            pagerState = pagerState,
-            thisPageIndex = thisPageIndex,
+            modifier = Modifier
+                .size(size = pageSize)
+                .pagerAnimation(
+                    pagerState = pagerState,
+                    thisPageIndex = thisPageIndex,
+                ),
             drawable = drawables[thisPageIndex],
         )
     }
