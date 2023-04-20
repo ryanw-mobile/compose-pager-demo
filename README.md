@@ -48,15 +48,14 @@ The page animations are all done using the `graphicsLayer` modifier at the page 
     )
 ```
 
-To make the page composable cleaner and not tied to the pager & animations, I have defined a custom `Modifier.pagerAnimation()` modifier which is equivalent to the followings at:
-package `com.rwmobi.composepager.ui.components.CardAnimationModifier`. 
+To make the page composable cleaner and not tied to the pager & animations, I have defined a custom `Modifier.pagerAnimation()` modifier which is equivalent to the code above at:
+ `com.rwmobi.composepager.ui.PagerAnimationModifier`. 
 
-At the `HorizontalPager()` we only have to apply this modifier to the pageContent composable, even without a need to pass the pagerState to the page composable, to make the coupling looser. 
+To make the coupling looser, within the `HorizontalPager()`, we only have to apply this modifier to the pageContent composable, without a need to pass the pagerState to the page composable.
 
-
-I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs.
+I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs. 🙂
 
 
 ## Just download and run it!
 
-This project was created using Android Studio Giraffe | 2022.3.1 Canary 11.
+This project was created using Android Studio Giraffe | 2022.3.1 Canary 11. You will need to have Java 17 to run it in that case.
