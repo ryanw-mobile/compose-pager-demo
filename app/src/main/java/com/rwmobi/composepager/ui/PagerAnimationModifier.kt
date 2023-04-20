@@ -1,4 +1,4 @@
-package com.rwmobi.composepager.ui.components
+package com.rwmobi.composepager.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.pager.PagerState
