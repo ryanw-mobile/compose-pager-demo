@@ -44,7 +44,7 @@ internal fun MainScreen(modifier: Modifier = Modifier) {
             ) {
                 AnimatedViewPager(
                     modifier = Modifier.fillMaxWidth(),
-                    pageWidth = pageWidth,
+                    pageSize = pageWidth, // Page is in square shape
                     drawables = drawables,
                 )
             }
