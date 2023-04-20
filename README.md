@@ -6,9 +6,9 @@
 
 This is a demo app demonstrating the official Jetpack Compose Horizontal Pager.
 
-In this app, you can see how simple we can set up a Horizontal Pager apply animations.
+In this app, you can see how simple we can set up a Horizontal Pager, feed in whatever content we want, and apply animations.
 
-No more custom views, fragments and complex lifecycle handling!
+No more custom views, adapters, fragments and complex lifecycle handling!
 
 ## Animations
 
