@@ -4,11 +4,12 @@
   <img src="greggs.gif" width="400" />
 </p>
 
-This is a demo app demonstrating the official Jetpack Compose Horizontal Pager.
+This is an app demonstrating the official Jetpack Compose Horizontal Pager.
 
 In this app, you can see how simple we can set up a Horizontal Pager, feed in whatever content we want, and apply animations.
 
-No more custom views, adapters, fragments and complex lifecycle handling!
+No more custom views, adapters, fragments and complex lifecycle handling! Try to imagine how much extra work you need to build this using XML Views?
+
 
 ## Animations
 
@@ -48,12 +49,12 @@ The page animations are all done using the `graphicsLayer` modifier at the page 
     )
 ```
 
-To make the page composable cleaner and not tied to the pager & animations, I have defined a custom `Modifier.pagerAnimation()` modifier which is equivalent to the code above at:
- `com.rwmobi.composepager.ui.PagerAnimationModifier`. 
+To make the page composable cleaner and not tied to the pager & animations, I have defined a custom `Modifier.pagerAnimation()` which is equivalent to the code above. You can find it at `com.rwmobi.composepager.ui.PagerAnimationModifier`. 
 
-To make the coupling looser, within the `HorizontalPager()`, we only have to apply this modifier to the pageContent composable, without a need to pass the pagerState to the page composable.
+To make the coupling looser, as the best practice, the `PageLayout` composable has a `modifier` parameter, so we only have to apply the `pagerAnimation` modifier when calling it from the `HorizontalPager()`, without a need to pass the `pagerState` to the `PageLayout`.
 
 I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs. 🙂
+
 
 ## Haptic Feedback
 
