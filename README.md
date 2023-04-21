@@ -55,6 +55,29 @@ To make the coupling looser, within the `HorizontalPager()`, we only have to app
 
 I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs. 🙂
 
+## Haptic Feedback
+
+Let's try `CompositionLocal`! We can perform haptic feedback in two lines of code.
+
+To following `LaunchedEffect` can perform haptic feedback during a page-change event. Within the same collector, you may do some extra work related to the page change. 
+
+```
+    var currentPageIndex by remember { mutableStateOf(0) }
+    val hapticFeedback = LocalHapticFeedback.current
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.currentPage }.collect { currentPage ->
+            if (currentPageIndex != currentPage) {
+                hapticFeedback.performHapticFeedback(hapticFeedbackType = HapticFeedbackType.LongPress)
+                currentPageIndex = currentPage
+            }
+            // Anything to be triggered by page-change can be done here
+        }
+    }
+
+```
+
+The `snapshotFlow` approach was recommended by the previous Accompanist documentation.
+
 
 ## Just download and run it!
 

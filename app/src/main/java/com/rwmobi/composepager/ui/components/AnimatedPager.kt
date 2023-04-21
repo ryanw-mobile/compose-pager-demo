@@ -7,8 +7,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.Dp
 import com.rwmobi.composepager.ui.pagerAnimation
 
@@ -21,6 +29,18 @@ internal fun AnimatedViewPager(
     @DrawableRes drawables: List<Int>,
 ) {
     val pagerState = rememberPagerState(initialPage = 0)
+
+    var currentPageIndex by remember { mutableStateOf(0) }
+    val hapticFeedback = LocalHapticFeedback.current
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.currentPage }.collect { currentPage ->
+            if (currentPageIndex != currentPage) {
+                hapticFeedback.performHapticFeedback(hapticFeedbackType = HapticFeedbackType.LongPress)
+                currentPageIndex = currentPage
+            }
+            // Anything to be triggered by page-change can be done here
+        }
+    }
 
     HorizontalPager(
         modifier = modifier,
