@@ -10,6 +10,7 @@ In this app, you can see how simple we can set up a Horizontal Pager, feed in wh
 
 No more custom views, adapters, fragments and complex lifecycle handling! Try to imagine how much extra work you need to build this using XML Views?
 
+&nbsp;&nbsp;
 
 ## Animations
 
@@ -53,20 +54,26 @@ To make the page composable cleaner and not tied to the pager & animations, I ha
 
 To make the coupling looser, as the best practice, the `PageLayout` composable has a `modifier` parameter, so we only have to apply the `pagerAnimation` modifier when calling it from the `HorizontalPager()`, without a need to pass the `pagerState` to the `PageLayout`.
 
+&nbsp;
+&nbsp;
+&nbsp;
+
 I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs. 🙂
 
+&nbsp;&nbsp;
 
 ## Haptic Feedback
 
 Let's try `CompositionLocal`! We can perform haptic feedback in two lines of code.
 
-To following `LaunchedEffect` can perform haptic feedback during a page-change event. Within the same collector, you may do some extra work related to the page change. 
+The following `LaunchedEffect` can perform haptic feedback during a page-change event. Within the same collector, you may do some extra work related to the page change. 
 
 ```
     var currentPageIndex by remember { mutableStateOf(0) }
     val hapticFeedback = LocalHapticFeedback.current
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { currentPage ->
+            // This is required to avoid the trigger when the pager is first loaded
             if (currentPageIndex != currentPage) {
                 hapticFeedback.performHapticFeedback(hapticFeedbackType = HapticFeedbackType.LongPress)
                 currentPageIndex = currentPage
@@ -78,6 +85,9 @@ To following `LaunchedEffect` can perform haptic feedback during a page-change e
 ```
 
 The `snapshotFlow` approach was recommended by the previous Accompanist documentation.
+
+&nbsp;
+&nbsp;
 
 
 ## Just download and run it!
