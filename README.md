@@ -1,14 +1,16 @@
 # Jetpack Compose Horizontal Pager Animation Demo
 
+Complementary article: [Reasons to Love the New Jetpack Compose Pager](https://medium.com/@callmeryan/reasons-to-love-the-new-jetpack-compose-pager-a53366fb6906)
+
 <p align="center">
   <img src="greggs.gif" width="400" />
 </p>
 
 This is an app demonstrating the official Jetpack Compose Horizontal Pager.
 
-In this app, you can see how simple we can set up a Horizontal Pager, feed in whatever content we want, and apply animations.
+This app shows how straightforward we can set up a Horizontal Pager, feed in whatever content we want, and apply animations.
 
-No more custom views, adapters, fragments and complex lifecycle handling! Try to imagine how much extra work you need to build this using XML Views?
+No more custom views, adapters, fragments and complex lifecycle handling! Imagine how much extra work you need to build this using XML Views?
 
 &nbsp;&nbsp;
 
@@ -55,10 +57,6 @@ To make the page composable cleaner and not tied to the pager & animations, I ha
 To make the coupling looser, as the best practice, the `PageLayout` composable has a `modifier` parameter, so we only have to apply the `pagerAnimation` modifier when calling it from the `HorizontalPager()`, without a need to pass the `pagerState` to the `PageLayout`.
 
 &nbsp;
-&nbsp;
-&nbsp;
-
-I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs. 🙂
 
 &nbsp;&nbsp;
 
@@ -66,7 +64,8 @@ I am not a mathematician, and I no longer have some-mathematician-coworker 👨�
 
 Let's try `CompositionLocal`! We can perform haptic feedback in two lines of code.
 
-The following `LaunchedEffect` can perform haptic feedback during a page-change event. Within the same collector, you may do some extra work related to the page change. 
+The following `LaunchedEffect` can perform haptic feedback during a page-change event. You may do some extra work related to the page change within the same collector. 
+
 
 ```
     var currentPageIndex by remember { mutableStateOf(0) }
@@ -93,3 +92,10 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 ## Just download and run it!
 
 This project was created using Android Studio Giraffe | 2022.3.1 Canary 11. You will need to have Java 17 to run it in that case.
+
+
+## Some final words
+
+I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs. 🙂
+
+I hope those who worked with me remember my meal deals contact list. 🙂 
