@@ -1,10 +1,12 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches:
+    - 'renovate/**'
+  push:
+    branches:
+    - 'renovate/**'
 
 jobs:
   build:
