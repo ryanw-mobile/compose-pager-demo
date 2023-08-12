@@ -14,9 +14,9 @@ fun Modifier.pagerAnimation(
 ) = then(
     graphicsLayer {
         val pageOffset = (
-                (pagerState.currentPage - thisPageIndex) + pagerState
-                    .currentPageOffsetFraction
-                )
+            (pagerState.currentPage - thisPageIndex) + pagerState
+                .currentPageOffsetFraction
+            )
 
         alpha = lerp(
             start = 0.4f,
@@ -39,5 +39,5 @@ fun Modifier.pagerAnimation(
             scaleX = scale
             scaleY = scale
         }
-    }
+    },
 )

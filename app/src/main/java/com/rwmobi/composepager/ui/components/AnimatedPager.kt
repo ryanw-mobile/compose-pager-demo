@@ -20,7 +20,6 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.Dp
 import com.rwmobi.composepager.ui.pagerAnimation
 
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun AnimatedViewPager(
@@ -35,7 +34,9 @@ internal fun AnimatedViewPager(
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { currentPage ->
             if (currentPageIndex != currentPage) {
-                hapticFeedback.performHapticFeedback(hapticFeedbackType = HapticFeedbackType.LongPress)
+                hapticFeedback.performHapticFeedback(
+                    hapticFeedbackType = HapticFeedbackType.LongPress,
+                )
                 currentPageIndex = currentPage
             }
             // Anything to be triggered by page-change can be done here

@@ -20,12 +20,12 @@ internal fun PageLayout(
     @DrawableRes drawable: Int,
 ) {
     Card(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                .background(color = MaterialTheme.colorScheme.secondaryContainer),
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),
