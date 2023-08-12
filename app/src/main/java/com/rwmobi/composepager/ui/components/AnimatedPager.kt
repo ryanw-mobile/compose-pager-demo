@@ -9,7 +9,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
@@ -27,9 +27,13 @@ internal fun AnimatedViewPager(
     pageSize: Dp,
     @DrawableRes drawables: List<Int>,
 ) {
-    val pagerState = rememberPagerState(initialPage = 0)
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        initialPageOffsetFraction = 0f,
+        pageCount = { drawables.size },
+    )
 
-    var currentPageIndex by remember { mutableStateOf(0) }
+    var currentPageIndex by remember { mutableIntStateOf(0) }
     val hapticFeedback = LocalHapticFeedback.current
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { currentPage ->
@@ -45,7 +49,6 @@ internal fun AnimatedViewPager(
 
     HorizontalPager(
         modifier = modifier,
-        pageCount = drawables.size,
         state = pagerState,
         contentPadding = PaddingValues(horizontal = pageSize),
         verticalAlignment = Alignment.CenterVertically,
