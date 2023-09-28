@@ -1,5 +1,5 @@
 [versions]
-com-android-application = "8.2.0-alpha16"
+com-android-application = "8.2.0-beta05"
 org-jetbrains-kotlin-android = "1.9.0"
 core-ktx = "1.10.1"
 junit = "4.13.2"

@@ -91,7 +91,7 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 
 ## Just download and run it!
 
-This project was created using Android Studio Giraffe | 2022.3.1 Canary 11. You will need to have Java 17 to run it in that case.
+This project was created using Android Studio Hedgehog | 2023.1.1 Beta 5. You will need to have Java 17 to run it in that case.
 
 
 ## Some final words
