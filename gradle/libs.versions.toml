@@ -8,7 +8,7 @@ espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.6.2"
 activity-compose = "1.8.1"
 compose-bom = "2023.10.01"
-gradle-ktlint = "12.0.2"
+gradle-ktlint = "12.0.3"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
