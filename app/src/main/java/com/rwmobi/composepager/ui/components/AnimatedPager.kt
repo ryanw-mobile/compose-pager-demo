@@ -27,11 +27,12 @@ internal fun AnimatedViewPager(
     pageSize: Dp,
     @DrawableRes drawables: List<Int>,
 ) {
-    val pagerState = rememberPagerState(
-        initialPage = 0,
-        initialPageOffsetFraction = 0f,
-        pageCount = { drawables.size },
-    )
+    val pagerState =
+        rememberPagerState(
+            initialPage = 0,
+            initialPageOffsetFraction = 0f,
+            pageCount = { drawables.size },
+        )
 
     var currentPageIndex by remember { mutableIntStateOf(0) }
     val hapticFeedback = LocalHapticFeedback.current
@@ -54,12 +55,13 @@ internal fun AnimatedViewPager(
         verticalAlignment = Alignment.CenterVertically,
     ) { thisPageIndex ->
         PageLayout(
-            modifier = Modifier
-                .size(size = pageSize)
-                .pagerAnimation(
-                    pagerState = pagerState,
-                    thisPageIndex = thisPageIndex,
-                ),
+            modifier =
+                Modifier
+                    .size(size = pageSize)
+                    .pagerAnimation(
+                        pagerState = pagerState,
+                        thisPageIndex = thisPageIndex,
+                    ),
             drawable = drawables[thisPageIndex],
         )
     }

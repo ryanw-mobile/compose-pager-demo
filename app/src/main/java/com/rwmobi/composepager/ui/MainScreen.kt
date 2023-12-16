@@ -23,15 +23,16 @@ import com.rwmobi.composepager.ui.theme.ComposePagerTheme
 internal fun MainScreen(modifier: Modifier = Modifier) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
     val pageWidth = (screenWidth / 3f).dp
-    val drawables = listOf(
-        R.drawable.greggs1,
-        R.drawable.greggs2,
-        R.drawable.greggs3,
-        R.drawable.greggs4,
-        R.drawable.greggs5,
-        R.drawable.greggs6,
-        R.drawable.greggs7,
-    )
+    val drawables =
+        listOf(
+            R.drawable.greggs1,
+            R.drawable.greggs2,
+            R.drawable.greggs3,
+            R.drawable.greggs4,
+            R.drawable.greggs5,
+            R.drawable.greggs6,
+            R.drawable.greggs7,
+        )
 
     ComposePagerTheme {
         Surface(

@@ -14,22 +14,25 @@ fun Modifier.pagerAnimation(
 ) = then(
     graphicsLayer {
         val pageOffset = (
-            (pagerState.currentPage - thisPageIndex) + pagerState
-                .currentPageOffsetFraction
+            (pagerState.currentPage - thisPageIndex) +
+                pagerState
+                    .currentPageOffsetFraction
+        )
+
+        alpha =
+            lerp(
+                start = 0.4f,
+                stop = 1f,
+                fraction = 1f - pageOffset.absoluteValue.coerceIn(0f, 1f),
             )
 
-        alpha = lerp(
-            start = 0.4f,
-            stop = 1f,
-            fraction = 1f - pageOffset.absoluteValue.coerceIn(0f, 1f),
-        )
-
         cameraDistance = 8 * density
-        rotationY = lerp(
-            start = 0f,
-            stop = 40f,
-            fraction = pageOffset.coerceIn(-1f, 1f),
-        )
+        rotationY =
+            lerp(
+                start = 0f,
+                stop = 40f,
+                fraction = pageOffset.coerceIn(-1f, 1f),
+            )
 
         lerp(
             start = 0.5f,
