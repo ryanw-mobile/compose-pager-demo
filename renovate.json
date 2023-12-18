@@ -3,15 +3,15 @@
   "extends": [
     "config:base"
   ],
-  "assignAutomerge": true,
-  "assignees": [
-    "ryanw-mobile"
-  ],
+  "commitMessagePrefix": "[chore] Renovate: ",
+  "commitMessageExtra": "{{{currentValue}}} to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}{{prettyNewMajor}}{{else}}{{#if isSingleVersion}}{{prettyNewVersion}}{{else}}{{#if newValue}}{{{newValue}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{/if}}",
+  "assignAutomerge": false,
   "reviewers": [
     "ryanw-mobile"
   ],
-  "commitMessagePrefix": "[chore] Renovate: ",
-  "commitMessageExtra": "{{{currentValue}}} to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}{{prettyNewMajor}}{{else}}{{#if isSingleVersion}}{{prettyNewVersion}}{{else}}{{#if newValue}}{{{newValue}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{/if}}",
+  "assignees": [
+    "ryanw-mobile"
+  ],
   "packageRules": [
     {
       "matchPackagePatterns": [
@@ -32,5 +32,6 @@
       "groupName": "kotlin"
     }
   ],
-  "automerge": true
+  "automerge": true,
+  "platformAutomerge": true
 }
