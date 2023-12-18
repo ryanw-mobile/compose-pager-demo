@@ -17,7 +17,7 @@ fun Modifier.pagerAnimation(
             (pagerState.currentPage - thisPageIndex) +
                 pagerState
                     .currentPageOffsetFraction
-        )
+            )
 
         alpha =
             lerp(

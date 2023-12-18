@@ -21,10 +21,9 @@ internal fun PageLayout(
         modifier = modifier,
     ) {
         Column(
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .background(color = MaterialTheme.colorScheme.secondaryContainer),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.secondaryContainer),
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),
