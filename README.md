@@ -1,4 +1,4 @@
-# Jetpack Compose Horizontal Pager Animation Demo
+# Jetpack Compose Horizontal Pager Animation Demo ![Gradle Check on Main](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_check.yml/badge.svg)
 
 Complementary article: [Reasons to Love the New Jetpack Compose Pager](https://medium.com/@callmeryan/reasons-to-love-the-new-jetpack-compose-pager-a53366fb6906)
 
@@ -91,7 +91,7 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 
 ## Just download and run it!
 
-This project was created using Android Studio Hedgehog | 2023.1.1 Beta 5. You will need to have Java 17 to run it in that case.
+This project was created using Android Studio Iguana | 2023.2.1 Canary 18. You will need to have Java 17 to run it in that case.
 
 
 ## Some final words
