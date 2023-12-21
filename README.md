@@ -1,4 +1,4 @@
-# Jetpack Compose Horizontal Pager Animation Demo ![Gradle Check on Main](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_check.yml/badge.svg)
+# Jetpack Compose Horizontal Pager Animation Demo ![Gradle Check on Main](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg)
 
 Complementary article: [Reasons to Love the New Jetpack Compose Pager](https://medium.com/@callmeryan/reasons-to-love-the-new-jetpack-compose-pager-a53366fb6906)
 

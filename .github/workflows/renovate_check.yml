@@ -1,10 +1,12 @@
-name: Gradle Check on Main
+name: Renovate build check
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches:
+      - 'renovate/**'
+  push:
+    branches:
+      - 'renovate/**'
 
 jobs:
   build:
@@ -21,7 +23,7 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
 
-      - name: Run Gradle check
+      - name: Gradle Check
         run: ./gradlew check --no-daemon
