@@ -1,8 +1,8 @@
 name: Renovate build check
 
 on:
-  pull_request:
   merge_group:
+  pull_request:
     branches:
       - 'renovate/**'
   push:
