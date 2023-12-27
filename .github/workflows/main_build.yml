@@ -1,4 +1,4 @@
-name: Gradle Check on Main
+name: Gradle Build on Main
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: set up JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'corretto'
           java-version: '21'
           cache: gradle
 
