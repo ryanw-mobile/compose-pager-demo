@@ -7,18 +7,19 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.util.lerp
 import kotlin.math.absoluteValue
 
+/**
+ * Create custom modifiers:
+ * https://developer.android.com/jetpack/compose/custom-modifiers
+ */
 @OptIn(ExperimentalFoundationApi::class)
 fun Modifier.pagerAnimation(
     pagerState: PagerState,
     thisPageIndex: Int,
-) = then(
-    graphicsLayer {
-        val pageOffset = (
-            (pagerState.currentPage - thisPageIndex) +
-                pagerState
-                    .currentPageOffsetFraction
-            )
+): Modifier {
+    val pageOffset =
+        (pagerState.currentPage - thisPageIndex) + pagerState.currentPageOffsetFraction
 
+    return this then Modifier.graphicsLayer {
         alpha =
             lerp(
                 start = 0.4f,
@@ -42,5 +43,5 @@ fun Modifier.pagerAnimation(
             scaleX = scale
             scaleY = scale
         }
-    },
-)
+    }
+}

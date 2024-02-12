@@ -80,7 +80,6 @@ The following `LaunchedEffect` can perform haptic feedback during a page-change 
             // Anything to be triggered by page-change can be done here
         }
     }
-
 ```
 
 The `snapshotFlow` approach was recommended by the previous Accompanist documentation.
@@ -91,11 +90,4 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 
 ## Just download and run it!
 
-This project was created using Android Studio Iguana | 2023.2.1 Canary 18. You will need to have Java 17 to run it in that case.
-
-
-## Some final words
-
-I am not a mathematician, and I no longer have some-mathematician-coworker 👨🏻‍🦲 with me to play with this. There might have room for improvement. Feel free to optimise everything here to meet your needs. 🙂
-
-I hope those who worked with me remember my meal deals contact list. 🙂 
+This project was configured to build using Android Studio Iguana | 2023.2.1 RC1. You will need to have Java 17 to run it in that case.
