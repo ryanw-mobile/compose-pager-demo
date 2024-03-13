@@ -88,6 +88,8 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 &nbsp;
 
 
-## Just download and run it!
+## Let's download and run it!
 
-This project was configured to build using Android Studio Iguana | 2023.2.1 RC1. You will need to have Java 17 to run it in that case.
+This project was configured to build using Android Studio Iguana | 2023.2.1. You will need to have Java 17 to build the project.
+
+Alternatively, you can find the ready-to-install APKs and App Bundles under the [release section](https://github.com/ryanw-mobile/compose-pager-demo/releases).

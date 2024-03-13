@@ -1,0 +1,91 @@
+name: Android Build and Release on Tag
+
+on:
+  create:
+
+jobs:
+  build-and-release:
+    if: github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/release/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decode Keystore
+        id: decode_keystore
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: 'release.jks'
+          encodedString: ${{ secrets.KEYSTORE }}
+
+      - uses: actions/checkout@v4
+
+      - name: set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '21'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Gradle build
+        run: ./gradlew clean bundleRelease assembleRelease --no-daemon
+        env:
+          BITRISE: 'true'
+          KEYSTORE_LOCATION: ${{ steps.decode_keystore.outputs.filePath }}
+          BITRISEIO_ANDROID_KEYSTORE_ALIAS: ${{ secrets.BITRISEIO_ANDROID_KEYSTORE_ALIAS }}
+          BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD: ${{ secrets.BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
+          BITRISEIO_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.BITRISEIO_ANDROID_KEYSTORE_PASSWORD }}
+
+      - name: Extract Version Number
+        run: echo "version=${GITHUB_REF#refs/tags/release/}" >> $GITHUB_ENV
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-build-artifacts
+          path: |
+            app/build/outputs/apk/release/*.apk
+            app/build/outputs/bundle/release/*.aab
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_FOR_RELEASES }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ env.version }}
+          draft: false
+          prerelease: false
+          body: "Description of the release for version ${{ env.version }}"
+          commitish: ${{ github.sha }}
+
+      - name: Find APK file
+        run: |
+          apk_path=$(find ./app/build/outputs/apk/release -name "ComposePager-*.apk" | head -n 1)
+          echo "apk_path=$apk_path" >> $GITHUB_ENV
+
+      - name: Upload Release Asset APK
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_FOR_RELEASES }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.apk_path }}
+          asset_name: ComposePager-${{ env.version }}.apk
+          asset_content_type: application/vnd.android.package-archive
+
+      - name: Find AAB file
+        run: |
+          aab_path=$(find ./app/build/outputs/bundle/release -name "ComposePager-*.aab" | head -n 1)
+          echo "aab_path=$aab_path" >> $GITHUB_ENV
+
+      - name: Upload Release Asset AAB
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_FOR_RELEASES }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.aab_path }}
+          asset_name: ComposePager-${{ env.version }}.aab
+          asset_content_type: application/vnd.android.package-archive
