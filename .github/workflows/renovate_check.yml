@@ -2,9 +2,6 @@ name: Renovate Check
 
 on:
   merge_group:
-  pull_request:
-    branches:
-      - 'renovate/**'
   push:
     branches:
       - 'renovate/**'
@@ -27,4 +24,4 @@ jobs:
         run: chmod +x gradlew
 
       - name: Gradle Check
-        run: ./gradlew check --no-daemon
+        run: ./gradlew check assembleDebug --no-daemon
