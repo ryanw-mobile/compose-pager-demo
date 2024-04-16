@@ -39,14 +39,6 @@ jobs:
       - name: Extract Version Number
         run: echo "version=${GITHUB_REF#refs/tags/release/}" >> $GITHUB_ENV
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-build-artifacts
-          path: |
-            app/build/outputs/apk/release/*.apk
-            app/build/outputs/bundle/release/*.aab
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
