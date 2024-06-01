@@ -93,3 +93,21 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 This project was configured to build using Android Studio Iguana | 2023.2.1. You will need to have Java 17 to build the project.
 
 Alternatively, you can find the ready-to-install APKs and App Bundles under the [release section](https://github.com/ryanw-mobile/compose-pager-demo/releases).
+
+## Technical details
+
+### Dependencies
+
+* [AndroidX Core KTX](https://developer.android.com/jetpack/androidx/releases/core) - Apache 2.0 - Extensions to Java APIs for Android development
+* [JUnit](https://junit.org/junit5/) - EPL 2.0 - A simple framework to write repeatable tests
+* [AndroidX Test Ext JUnit](https://developer.android.com/jetpack/androidx/releases/test) - Apache 2.0 - Extensions for Android testing
+* [AndroidX Espresso](https://developer.android.com/training/testing/espresso) - Apache 2.0 - UI testing framework
+* [AndroidX Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Apache 2.0 - Lifecycles-aware components
+* [Jetpack Compose](https://developer.android.com/jetpack/compose) - Apache 2.0 - Modern toolkit for building native UI
+* [AndroidX Material3](https://developer.android.com/jetpack/androidx/releases/compose-material3) - Apache 2.0 - Material Design components for Jetpack Compose
+
+### Plugins
+
+* [Android Application Plugin](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration) - Google - Plugin for building Android applications
+* [Jetbrains Kotlin Android Plugin](https://kotlinlang.org/docs/gradle.html) - JetBrains - Plugin for Kotlin Android projects
+* [Ktlint Plugin](https://github.com/JLLeitschuh/ktlint-gradle) - JLLeitschuh - Plugin for Kotlin linter
