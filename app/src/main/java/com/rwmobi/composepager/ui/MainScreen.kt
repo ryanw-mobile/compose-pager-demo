@@ -25,13 +25,15 @@ internal fun MainScreen(modifier: Modifier = Modifier) {
     val pageWidth = (screenWidth / 3f).dp
     val drawables =
         listOf(
-            R.drawable.greggs1,
-            R.drawable.greggs2,
-            R.drawable.greggs3,
-            R.drawable.greggs4,
-            R.drawable.greggs5,
-            R.drawable.greggs6,
-            R.drawable.greggs7,
+            R.drawable.meal1,
+            R.drawable.meal2,
+            R.drawable.meal3,
+            R.drawable.meal4,
+            R.drawable.meal5,
+            R.drawable.meal6,
+            R.drawable.meal7,
+            R.drawable.meal8,
+            R.drawable.meal9,
         )
 
     ComposePagerTheme {
