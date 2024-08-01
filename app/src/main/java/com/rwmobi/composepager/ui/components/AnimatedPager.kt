@@ -27,13 +27,17 @@ internal fun AnimatedViewPager(
     pageSize: Dp,
     @DrawableRes drawables: List<Int>,
 ) {
+    val endlessPagerMultiplier = 1000
+    val pageCount = endlessPagerMultiplier * drawables.size
+    val initialPage = pageCount / 2
+
     val pagerState = rememberPagerState(
-        initialPage = 0,
+        initialPage = initialPage,
         initialPageOffsetFraction = 0f,
-        pageCount = { drawables.size },
+        pageCount = { pageCount },
     )
 
-    var currentPageIndex by remember { mutableIntStateOf(0) }
+    var currentPageIndex by remember { mutableIntStateOf(initialPage) }
     val hapticFeedback = LocalHapticFeedback.current
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { currentPage ->
@@ -52,15 +56,17 @@ internal fun AnimatedViewPager(
         state = pagerState,
         contentPadding = PaddingValues(horizontal = pageSize),
         verticalAlignment = Alignment.CenterVertically,
-    ) { thisPageIndex ->
+    ) { absolutePageIndex ->
+        val resolvedPageContentIndex = absolutePageIndex % drawables.size
+
         PageLayout(
             modifier = Modifier
                 .size(size = pageSize)
                 .pagerAnimation(
                     pagerState = pagerState,
-                    thisPageIndex = thisPageIndex,
+                    thisPageIndex = absolutePageIndex,
                 ),
-            drawable = drawables[thisPageIndex],
+            drawable = drawables[resolvedPageContentIndex],
         )
     }
 }
