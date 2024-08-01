@@ -1,9 +1,9 @@
-# Jetpack Compose Horizontal Pager Animation Demo ![Gradle Build](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg)
+# Jetpack Compose Endless Horizontal Pager Animation Demo ![Gradle Build](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg)
 
 Complementary article: [Reasons to Love the New Jetpack Compose Pager](https://medium.com/@callmeryan/reasons-to-love-the-new-jetpack-compose-pager-a53366fb6906)
 
 <p align="center">
-  <img src="greggs.gif" width="400" />
+  <img src="screenshots/240801_animated_wide.gif" width="320" alt="animated screenshot"/>
 </p>
 
 This is an app demonstrating the official Jetpack Compose Horizontal Pager.
@@ -86,6 +86,26 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 
 &nbsp;
 &nbsp;
+
+## Endless Pager
+
+By manipulating the `pagerState`, we can make the pager scroll endlessly. We simply multiply the original number of pages by a relatively large number, set the `initialPage` to around the middle of the range, and then, when we need to resolve the index for contents, we take the remainder of the multiplied page index divided by the actual number of items, and we are good to go.
+
+```
+    val endlessPagerMultiplier = 1000
+    val pageCount = endlessPagerMultiplier * drawables.size
+    val initialPage = pageCount / 2
+
+    val pagerState = rememberPagerState(
+        initialPage = initialPage,
+        initialPageOffsetFraction = 0f,
+        pageCount = { pageCount },
+    )
+    
+    ...
+    
+    val resolvedPageContentIndex = absolutePageIndex % drawables.size
+```
 
 
 ## Let's download and run it!
