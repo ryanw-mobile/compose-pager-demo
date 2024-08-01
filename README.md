@@ -1,6 +1,9 @@
 # Jetpack Compose Endless Horizontal Pager Animation Demo ![Gradle Build](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg)
 
-Complementary article: [Reasons to Love the New Jetpack Compose Pager](https://medium.com/@callmeryan/reasons-to-love-the-new-jetpack-compose-pager-a53366fb6906)
+Complementary article:
+
+* [Reasons to Love the New Jetpack Compose Pager](https://medium.com/@callmeryan/reasons-to-love-the-new-jetpack-compose-pager-a53366fb6906)
+* [Implementing an Endless Pager in Jetpack Compose]()
 
 <p align="center">
   <img src="screenshots/240801_animated_wide.gif" width="320" alt="animated screenshot"/>
