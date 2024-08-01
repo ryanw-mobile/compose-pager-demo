@@ -3,7 +3,7 @@
 Complementary article:
 
 * [Reasons to Love the New Jetpack Compose Pager](https://medium.com/@callmeryan/reasons-to-love-the-new-jetpack-compose-pager-a53366fb6906)
-* [Implementing an Endless Pager in Jetpack Compose]()
+* [Implementing an Endless Pager in Jetpack Compose](https://medium.com/@callmeryan/implementing-an-endless-pager-in-jetpack-compose-bbb509a434b6)
 
 <p align="center">
   <img src="screenshots/240801_animated_wide.gif" width="320" alt="animated screenshot"/>
