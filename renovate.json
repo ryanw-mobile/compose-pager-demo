@@ -30,18 +30,6 @@
         "com.google.devtools.ksp"
       ],
       "groupName": "kotlin"
-    },
-    {
-      "matchPackageNames": [
-        "androidx.lifecycle:lifecycle-viewmodel-ktx",
-        "androidx.lifecycle:lifecycle-runtime-ktx",
-        "androidx.lifecycle:lifecycle-runtime-compose"
-      ],
-      "groupName": "androidx-lifecycle",
-      "automerge": false,
-      "labels": [
-        "requires-approval"
-      ]
     }
   ],
   "automerge": true,

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Compose Pager</string>
+    <string name="content_description_viewpager">viewpager</string>
 </resources>

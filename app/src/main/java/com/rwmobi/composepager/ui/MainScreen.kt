@@ -9,6 +9,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rwmobi.composepager.R
@@ -21,6 +24,7 @@ import com.rwmobi.composepager.ui.theme.ComposePagerTheme
 )
 @Composable
 internal fun MainScreen(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     val screenWidth = LocalConfiguration.current.screenWidthDp
     val pageWidth = (screenWidth / 3f).dp
     val drawables =
@@ -46,7 +50,9 @@ internal fun MainScreen(modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.Center,
             ) {
                 AnimatedViewPager(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .semantics { contentDescription = context.getString(R.string.content_description_viewpager) },
                     pageSize = pageWidth, // Page is in square shape
                     drawables = drawables,
                 )
