@@ -9,6 +9,7 @@ activity-compose = "1.9.1"
 compose-bom = "2024.06.00"
 gradle-ktlint = "12.1.1"
 kotlin = "2.0.10"
+testRules = "1.6.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -26,6 +27,7 @@ ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "testRules" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
