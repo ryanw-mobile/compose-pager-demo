@@ -29,8 +29,9 @@ class MainActivityTest {
     }
 
     @Test
-    fun appNavigationLayoutTest() {
+    fun appLaunchSuccessfully() {
         with(mainActivityTestRobot) {
+            assertViewPagerIsDisplayed()
         }
     }
 }

@@ -7,8 +7,11 @@
 
 package com.rwmobi.composepager.ui
 
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.printToLog
+import com.rwmobi.composepager.R
 import com.rwmobi.composepager.ui.test.ComposePagerTestRule
 
 internal class MainActivityTestRobot(
@@ -18,6 +21,13 @@ internal class MainActivityTestRobot(
     fun printSemanticTree() {
         with(composeTestRule) {
             onRoot().printToLog("SemanticTree")
+        }
+    }
+
+    // Assertions
+    fun assertViewPagerIsDisplayed() {
+        with(composeTestRule) {
+            onNodeWithContentDescription(label = activity.getString(R.string.content_description_viewpager)).assertIsDisplayed()
         }
     }
 }
