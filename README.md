@@ -1,4 +1,4 @@
-# Jetpack Compose Endless Horizontal Pager Animation Demo ![Gradle Build](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg)
+# Jetpack Compose Endless Horizontal Pager Animation Demo ![Gradle Build](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
 Complementary article:
 
