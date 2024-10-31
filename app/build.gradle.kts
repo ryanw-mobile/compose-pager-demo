@@ -15,7 +15,7 @@ plugins {
 
 android {
     namespace = "com.rwmobi.composepager"
-    compileSdk = 34
+    compileSdk = 35
 
     signingConfigs {
         create("release") {
@@ -51,7 +51,7 @@ android {
     defaultConfig {
         applicationId = "com.rwmobi.composepager"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 3
         versionName = "1.1.0"
 
@@ -162,7 +162,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.espresso.core)
 }
 
 // ktlintFormat task will need to run before preBuild
