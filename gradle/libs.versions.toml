@@ -7,7 +7,7 @@ espresso-core = "3.6.1"
 lifecycle = "2.8.7"
 activity-compose = "1.9.3"
 compose-bom = "2024.11.00"
-gradle-ktlint = "12.1.1"
+gradle-ktlint = "12.1.2"
 kotlin = "2.0.21"
 testRules = "1.6.1"
 
