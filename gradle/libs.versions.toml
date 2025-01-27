@@ -8,7 +8,7 @@ lifecycle = "2.8.7"
 activity-compose = "1.10.0"
 compose-bom = "2025.01.00"
 gradle-ktlint = "12.1.2"
-kotlin = "2.1.0"
+kotlin = "2.1.10"
 testRules = "1.6.1"
 
 [libraries]
