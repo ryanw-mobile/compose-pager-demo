@@ -113,7 +113,7 @@ By manipulating the `pagerState`, we can make the pager scroll endlessly. We sim
 
 ## Let's download and run it!
 
-This project was configured to build using Android Studio Iguana | 2023.2.1. You will need to have Java 17 to build the project.
+This project was configured to build using Android Studio Narwhal Feature Drop | 2025.1.2 RC 1. You will need to have Java 17 to build the project.
 
 Alternatively, you can find the ready-to-install APKs and App Bundles under the [release section](https://github.com/ryanw-mobile/compose-pager-demo/releases).
 
@@ -121,16 +121,28 @@ Alternatively, you can find the ready-to-install APKs and App Bundles under the 
 
 ### Dependencies
 
-* [AndroidX Core KTX](https://developer.android.com/jetpack/androidx/releases/core) - Apache 2.0 - Extensions to Java APIs for Android development
-* [JUnit](https://junit.org/junit5/) - EPL 2.0 - A simple framework to write repeatable tests
-* [AndroidX Test Ext JUnit](https://developer.android.com/jetpack/androidx/releases/test) - Apache 2.0 - Extensions for Android testing
-* [AndroidX Espresso](https://developer.android.com/training/testing/espresso) - Apache 2.0 - UI testing framework
-* [AndroidX Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Apache 2.0 - Lifecycles-aware components
-* [Jetpack Compose](https://developer.android.com/jetpack/compose) - Apache 2.0 - Modern toolkit for building native UI
-* [AndroidX Material3](https://developer.android.com/jetpack/androidx/releases/compose-material3) - Apache 2.0 - Material Design components for Jetpack Compose
+* [AndroidX Core KTX](https://developer.android.com/jetpack/androidx/releases/core) - Apache 2.0 - Kotlin extensions for Android core libraries
+* [JUnit](https://junit.org/junit4/) - EPL-1.0 - Unit testing framework for Java
+* [AndroidX Test Ext JUnit](https://developer.android.com/jetpack/androidx/releases/test) - Apache 2.0 - Extensions for JUnit in Android testing
+* [AndroidX Espresso Core](https://developer.android.com/training/testing/espresso) - Apache 2.0 - UI testing framework for Android
+* [AndroidX Lifecycle Runtime KTX](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Apache 2.0 - Kotlin extensions for lifecycle-aware components
+* [AndroidX Activity Compose](https://developer.android.com/jetpack/androidx/releases/activity) - Apache 2.0 - Jetpack Compose integration with Activity
+* [Jetpack Compose BOM](https://developer.android.com/jetpack/compose/bom) - Apache 2.0 - Compose Bill of Materials for consistent versioning
+* [Jetpack Compose UI](https://developer.android.com/jetpack/compose) - Apache 2.0 - Fundamental UI components for Jetpack Compose
+* [Jetpack Compose Graphics](https://developer.android.com/jetpack/compose) - Apache 2.0 - Graphics utilities for Jetpack Compose
+* [Jetpack Compose Tooling](https://developer.android.com/jetpack/compose/tooling) - Apache 2.0 - Tooling support for Jetpack Compose
+* [Jetpack Compose UI Util](https://developer.android.com/jetpack/compose) - Apache 2.0 - Utility functions for Jetpack Compose UI
+* [Jetpack Compose Tooling Preview](https://developer.android.com/jetpack/compose/tooling) - Apache 2.0 - UI previews in Compose
+* [Jetpack Compose Test Manifest](https://developer.android.com/jetpack/compose/testing) - Apache 2.0 - Test manifest support for Jetpack Compose
+* [Jetpack Compose Test JUnit4](https://developer.android.com/jetpack/compose/testing) - Apache 2.0 - Compose UI testing with JUnit4
+* [Material3 for Jetpack Compose](https://developer.android.com/jetpack/compose/material3) - Apache 2.0 - Material Design 3 components for Compose
+* [AndroidX Test Rules](https://developer.android.com/jetpack/androidx/releases/test) - Apache 2.0 - JUnit rules for Android testing
 
 ### Plugins
 
 * [Android Application Plugin](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration) - Google - Plugin for building Android applications
-* [Jetbrains Kotlin Android Plugin](https://kotlinlang.org/docs/gradle.html) - JetBrains - Plugin for Kotlin Android projects
-* [Ktlint Plugin](https://github.com/JLLeitschuh/ktlint-gradle) - JLLeitschuh - Plugin for Kotlin linter
+* [Compose Compiler Plugin](https://developer.android.com/jetpack/compose) - JetBrains - Plugin for Jetpack Compose
+* [Kotlin Android Plugin](https://kotlinlang.org/docs/gradle.html) - JetBrains - Plugin for Kotlin Android projects
+* [Detekt Plugin](https://detekt.dev/) - Artur Bosch - A static code analysis tool for Kotlin projects
+* [Kotlinter Plugin](https://github.com/jeremymailen/kotlinter-gradle) - Jeremy Mailen - Linter for Kotlin code
+* 
