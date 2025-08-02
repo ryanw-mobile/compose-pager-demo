@@ -180,8 +180,8 @@ private fun BaseAppModuleExtension.setupSigningAndBuildTypes() {
         }
     }
 
-    val timestamp = SimpleDateFormat("yyyyMMdd‑HHmmss").format(Date())
-    val baseName = "$productApkName‑${libs.versions.versionName.get()}‑$timestamp"
+    val timestamp = SimpleDateFormat("yyyyMMdd-HHmmss").format(Date())
+    val baseName = "$productApkName-${libs.versions.versionName.get()}-$timestamp"
     extensions.configure<BasePluginExtension> {
         archivesName.set(baseName)
     }
