@@ -10,6 +10,15 @@ compose-bom = "2025.07.00"
 gradle-ktlint = "13.0.0"
 kotlin = "2.2.0"
 testRules = "1.7.0"
+kotlinter = "5.2.0"
+detekt = "1.23.8"
+
+# App configurations, not dependencies
+minSdk = "26"
+targetSdk = "36"
+compileSdk = "36"
+versionCode = "4"
+versionName = "1.2.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -33,6 +42,7 @@ androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-gradle-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "gradle-ktlint" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 
 [bundles]
