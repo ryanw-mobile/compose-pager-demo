@@ -30,9 +30,7 @@ android {
         applicationId = "com.rwmobi.composepager"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        vectorDrawables { useSupportLibrary = true }
     }
 
     buildFeatures {
@@ -96,7 +94,6 @@ dependencies {
 }
 
 tasks {
-    // copyBaselineProfileAfterBuild()
     check { dependsOn("detekt") }
     preBuild { dependsOn("formatKotlin") }
 }
@@ -137,53 +134,49 @@ private fun BaseAppModuleExtension.setupPackagingResourcesDeduplication() {
 }
 
 private fun BaseAppModuleExtension.setupSigningAndBuildTypes() {
-    signingConfigs {
-        create("releaseSigningConfig") {
-            // Only initialise the signing config when a Release or Bundle task is being executed.
-            // This prevents Gradle sync or debug builds from attempting to load the keystore,
-            // which could fail if the keystore or environment variables are not available.
-            // SigningConfig itself is only wired to the 'release' build type, so this guard avoids unnecessary setup.
-            val isReleaseBuild =
-                gradle.startParameter.taskNames.any {
-                    it.contains("Release", ignoreCase = true) ||
-                            it.contains("Bundle", ignoreCase = true) ||
-                            it.equals("build", ignoreCase = true)
-                }
-
-            if (isReleaseBuild || isRunningOnCI) {
-                val keystorePropertiesFile = file("../../keystore.properties")
-
-                if (isRunningOnCI || !keystorePropertiesFile.exists()) {
-                    println("⚠\uFE0F Signing Config: using environment variables")
-                    keyAlias = System.getenv("CI_ANDROID_KEYSTORE_ALIAS")
-                    keyPassword = System.getenv("CI_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
-                    storeFile = file(System.getenv("KEYSTORE_LOCATION"))
-                    storePassword = System.getenv("CI_ANDROID_KEYSTORE_PASSWORD")
-                } else {
-                    println("⚠\uFE0F Signing Config: using keystore properties")
-                    val properties = Properties()
-                    InputStreamReader(
-                        FileInputStream(keystorePropertiesFile),
-                        Charsets.UTF_8,
-                    ).use { reader ->
-                        properties.load(reader)
-                    }
-
-                    keyAlias = properties.getProperty("alias")
-                    keyPassword = properties.getProperty("pass")
-                    storeFile = file(properties.getProperty("store"))
-                    storePassword = properties.getProperty("storePass")
-                }
-            } else {
-                println("⚠\uFE0F Warning: Signing Config not created for non-release builds.")
-            }
-        }
-    }
-
+    val releaseSigningConfigName = "releaseSigningConfig"
     val timestamp = SimpleDateFormat("yyyyMMdd-HHmmss").format(Date())
     val baseName = "$productApkName-${libs.versions.versionName.get()}-$timestamp"
-    extensions.configure<BasePluginExtension> {
-        archivesName.set(baseName)
+    val isReleaseBuild = gradle.startParameter.taskNames.any {
+        it.contains("Release", ignoreCase = true)
+                || it.contains("Bundle", ignoreCase = true)
+                || it.equals("build", ignoreCase = true)
+    }
+
+    extensions.configure<BasePluginExtension> { archivesName.set(baseName) }
+
+    signingConfigs.create(releaseSigningConfigName) {
+        // Only initialise the signing config when a Release or Bundle task is being executed.
+        // This prevents Gradle sync or debug builds from attempting to load the keystore,
+        // which could fail if the keystore or environment variables are not available.
+        // SigningConfig itself is only wired to the 'release' build type, so this guard avoids unnecessary setup.
+        if (isReleaseBuild) {
+            val keystorePropertiesFile = file("../../keystore.properties")
+
+            if (isRunningOnCI || !keystorePropertiesFile.exists()) {
+                println("⚠\uFE0F Signing Config: using environment variables")
+                keyAlias = System.getenv("CI_ANDROID_KEYSTORE_ALIAS")
+                keyPassword = System.getenv("CI_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
+                storeFile = file(System.getenv("KEYSTORE_LOCATION"))
+                storePassword = System.getenv("CI_ANDROID_KEYSTORE_PASSWORD")
+            } else {
+                println("⚠\uFE0F Signing Config: using keystore properties")
+                val properties = Properties()
+                InputStreamReader(
+                    FileInputStream(keystorePropertiesFile),
+                    Charsets.UTF_8,
+                ).use { reader ->
+                    properties.load(reader)
+                }
+
+                keyAlias = properties.getProperty("alias")
+                keyPassword = properties.getProperty("pass")
+                storeFile = file(properties.getProperty("store"))
+                storePassword = properties.getProperty("storePass")
+            }
+        } else {
+            println("⚠\uFE0F Signing Config: not created for non-release builds.")
+        }
     }
 
     buildTypes {
@@ -205,14 +198,6 @@ private fun BaseAppModuleExtension.setupSigningAndBuildTypes() {
             setOutputFileName()
         }
 
-        create("demo") {
-            matchingFallbacks += listOf("debug")
-            applicationIdSuffix = ".demo"
-            isMinifyEnabled = false
-            isDebuggable = true
-            setOutputFileName()
-        }
-
         getByName("release") {
             isShrinkResources = true
             isMinifyEnabled = true
@@ -223,7 +208,7 @@ private fun BaseAppModuleExtension.setupSigningAndBuildTypes() {
                     "proguard-rules.pro",
                 ),
             )
-            signingConfig = signingConfigs.getByName("releaseSigningConfig")
+            signingConfig = signingConfigs.getByName(name = releaseSigningConfigName)
             setOutputFileName()
         }
     }
