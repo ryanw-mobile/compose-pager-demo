@@ -51,6 +51,7 @@ fun ComposePagerTheme(
             }
 
             darkTheme -> DarkColorScheme
+
             else -> LightColorScheme
         }
 
