@@ -1,5 +1,5 @@
 [versions]
-com-android-application = "8.13.2"
+com-android-application = "9.0.0"
 core-ktx = "1.17.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.3.0"
@@ -7,7 +7,6 @@ espresso-core = "3.7.0"
 lifecycle = "2.10.0"
 activity-compose = "1.12.2"
 compose-bom = "2026.01.00"
-gradle-ktlint = "13.0.0"
 kotlin = "2.3.0"
 testRules = "1.7.0"
 kotlinter = "5.4.0"
@@ -17,8 +16,8 @@ detekt = "1.23.8"
 minSdk = "26"
 targetSdk = "36"
 compileSdk = "36"
-versionCode = "4"
-versionName = "1.2.0"
+versionCode = "5"
+versionName = "1.3.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -41,7 +40,6 @@ androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 
