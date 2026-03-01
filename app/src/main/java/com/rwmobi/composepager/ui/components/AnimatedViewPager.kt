@@ -60,7 +60,11 @@ internal fun AnimatedViewPager(
     )
 
     val scope = rememberCoroutineScope()
-    val scrollJob = remember { mutableStateOf<Job?>(null) }
+    val scrollJob = remember {
+        object {
+            var job: Job? = null
+        }
+    }
     var currentPageIndex by remember { mutableIntStateOf(initialPage) }
     val hapticFeedback = LocalHapticFeedback.current
     LaunchedEffect(pagerState) {
@@ -83,7 +87,7 @@ internal fun AnimatedViewPager(
         verticalAlignment = Alignment.CenterVertically,
     ) { absolutePageIndex ->
         // Defensive calculation to ensure indices stay valid during rapid interactions
-        val resolvedPageContentIndex = remember(absolutePageIndex, drawables.size) {
+        val resolvedPageContentIndex = remember(absolutePageIndex, drawables) {
             absolutePageIndex % drawables.size
         }
 
@@ -113,8 +117,8 @@ internal fun AnimatedViewPager(
                 )
                 .clickable {
                     // Prevent concurrent scroll animations to avoid race conditions and potential crashes
-                    scrollJob.value?.cancel()
-                    scrollJob.value = scope.launch {
+                    scrollJob.job?.cancel()
+                    scrollJob.job = scope.launch {
                         // Safety check: target must be within current bounds
                         if (absolutePageIndex < pagerState.pageCount) {
                             pagerState.animateScrollToPage(absolutePageIndex)

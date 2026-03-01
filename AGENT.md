@@ -51,7 +51,9 @@ The project requires **Java 21** and **Android Studio**.
 - **Localization:** All user-facing strings should be stored in `strings.xml` to support internationalization. Avoid hardcoded strings in Composable functions.
 - **Robustness:** 
     - UI components should handle edge cases, such as empty data lists, gracefully.
+    - Use stable keys (e.g., the whole list `drawables` instead of just its size) for `remember`ed calculations that depend on list content to prevent `IndexOutOfBoundsException`.
     - Managed coroutine jobs should be used for animations to prevent race conditions during rapid user interactions (e.g., TalkBack double-taps).
+    - Use non-observable mutable references (e.g., `remember { object { var job: Job? = null } }`) for animation `Job`s to avoid unnecessary recompositions.
     - Use `derivedStateOf` and defensive bounds checking for index-dependent UI state.
 - **Linting:** Automated formatting and static analysis are part of the build process (`preBuild` depends on `formatKotlin`).
 
