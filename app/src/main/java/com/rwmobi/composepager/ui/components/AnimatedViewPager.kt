@@ -23,8 +23,8 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import com.rwmobi.composepager.R
@@ -60,11 +60,7 @@ internal fun AnimatedViewPager(
     )
 
     val scope = rememberCoroutineScope()
-    val scrollJob = remember {
-        object {
-            var job: Job? = null
-        }
-    }
+    var scrollJob by remember { mutableStateOf<Job?>(null) }
     var currentPageIndex by remember { mutableIntStateOf(initialPage) }
     val hapticFeedback = LocalHapticFeedback.current
     LaunchedEffect(pagerState) {
@@ -79,7 +75,7 @@ internal fun AnimatedViewPager(
         }
     }
 
-    val context = LocalContext.current
+    val resources = LocalResources.current
     HorizontalPager(
         modifier = modifier,
         state = pagerState,
@@ -96,13 +92,13 @@ internal fun AnimatedViewPager(
         }
 
         val finalDescription = remember(isCurrentPage, resolvedPageContentIndex) {
-            val baseDescription = context.getString(
+            val baseDescription = resources.getString(
                 R.string.content_description_page_item,
                 resolvedPageContentIndex + 1,
                 drawables.size,
             )
             if (isCurrentPage) {
-                context.getString(R.string.content_description_active_item, baseDescription)
+                resources.getString(R.string.content_description_active_item, baseDescription)
             } else {
                 baseDescription
             }
@@ -117,8 +113,8 @@ internal fun AnimatedViewPager(
                 )
                 .clickable {
                     // Prevent concurrent scroll animations to avoid race conditions and potential crashes
-                    scrollJob.job?.cancel()
-                    scrollJob.job = scope.launch {
+                    scrollJob?.cancel()
+                    scrollJob = scope.launch {
                         // Safety check: target must be within current bounds
                         if (absolutePageIndex < pagerState.pageCount) {
                             pagerState.animateScrollToPage(absolutePageIndex)

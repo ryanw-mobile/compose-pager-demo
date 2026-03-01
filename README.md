@@ -1,4 +1,4 @@
-# Jetpack Compose Endless Horizontal Pager Animation Demo ![Gradle Build](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+# Jetpack Compose Endless Horizontal Pager Animation Demo ![Gradle Build](https://github.com/ryanw-mobile/compose-pager-demo/actions/workflows/main_build.yml/badge.svg) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c3f7740d0c1b44a186f2daf58480b820)](https://app.codacy.com/gh/ryanw-mobile/compose-pager-demo/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Complementary article:
 
@@ -119,11 +119,12 @@ To ensure the app remains accessible, each page is assigned a unique, localized 
     ...
     
     val resolvedPageContentIndex = absolutePageIndex % drawables.size
+    val resources = LocalResources.current
     
     PageLayout(
         modifier = ...,
         drawable = drawables[resolvedPageContentIndex],
-        contentDescription = context.getString(
+        contentDescription = resources.getString(
             R.string.content_description_page_item,
             resolvedPageContentIndex + 1,
             drawables.size,
