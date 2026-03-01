@@ -12,8 +12,10 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -26,6 +28,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.Dp
 import com.rwmobi.composepager.R
 import com.rwmobi.composepager.ui.pagerAnimation
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -56,6 +59,7 @@ internal fun AnimatedViewPager(
     )
 
     val scope = rememberCoroutineScope()
+    val scrollJob = remember { mutableStateOf<Job?>(null) }
     var currentPageIndex by remember { mutableIntStateOf(initialPage) }
     val hapticFeedback = LocalHapticFeedback.current
     LaunchedEffect(pagerState) {
@@ -77,18 +81,26 @@ internal fun AnimatedViewPager(
         contentPadding = PaddingValues(horizontal = pageSize),
         verticalAlignment = Alignment.CenterVertically,
     ) { absolutePageIndex ->
-        val resolvedPageContentIndex = absolutePageIndex % drawables.size
-        val isCurrentPage = pagerState.currentPage == absolutePageIndex
+        // Defensive calculation to ensure indices stay valid during rapid interactions
+        val resolvedPageContentIndex = remember(absolutePageIndex, drawables.size) {
+            absolutePageIndex % drawables.size
+        }
 
-        val baseDescription = context.getString(
-            R.string.content_description_page_item,
-            resolvedPageContentIndex + 1,
-            drawables.size,
-        )
-        val finalDescription = if (isCurrentPage) {
-            context.getString(R.string.content_description_active_item, baseDescription)
-        } else {
-            baseDescription
+        val isCurrentPage by remember(absolutePageIndex) {
+            derivedStateOf { pagerState.currentPage == absolutePageIndex }
+        }
+
+        val finalDescription = remember(isCurrentPage, resolvedPageContentIndex) {
+            val baseDescription = context.getString(
+                R.string.content_description_page_item,
+                resolvedPageContentIndex + 1,
+                drawables.size,
+            )
+            if (isCurrentPage) {
+                context.getString(R.string.content_description_active_item, baseDescription)
+            } else {
+                baseDescription
+            }
         }
 
         PageLayout(
@@ -99,8 +111,13 @@ internal fun AnimatedViewPager(
                     thisPageIndex = absolutePageIndex,
                 )
                 .clickable {
-                    scope.launch {
-                        pagerState.animateScrollToPage(absolutePageIndex)
+                    // Prevent concurrent scroll animations to avoid race conditions and potential crashes
+                    scrollJob.value?.cancel()
+                    scrollJob.value = scope.launch {
+                        // Safety check: target must be within current bounds
+                        if (absolutePageIndex < pagerState.pageCount) {
+                            pagerState.animateScrollToPage(absolutePageIndex)
+                        }
                     }
                 },
             drawable = drawables[resolvedPageContentIndex],

@@ -48,7 +48,10 @@ The project requires **Java 21** and **Android Studio**.
     - Custom animations are encapsulated in dedicated `Modifier` extensions (e.g., `Modifier.pagerAnimation`).
     - Side effects are handled using `LaunchedEffect` and `snapshotFlow` for state observation.
 - **Accessibility:** All UI components should provide meaningful accessibility labels (via `contentDescription`).
-- **Robustness:** UI components should handle edge cases, such as empty data lists, gracefully.
+- **Robustness:** 
+    - UI components should handle edge cases, such as empty data lists, gracefully.
+    - Managed coroutine jobs should be used for animations to prevent race conditions during rapid user interactions (e.g., TalkBack double-taps).
+    - Use `derivedStateOf` and defensive bounds checking for index-dependent UI state.
 - **Linting:** Automated formatting and static analysis are part of the build process (`preBuild` depends on `formatKotlin`).
 
 ### Testing Practices
