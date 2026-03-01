@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 internal fun PageLayout(
     modifier: Modifier = Modifier,
     @DrawableRes drawable: Int,
+    contentDescription: String?,
 ) {
     Card(
         modifier = modifier,
@@ -28,7 +29,7 @@ internal fun PageLayout(
             Image(
                 modifier = Modifier.fillMaxSize(),
                 painter = painterResource(id = drawable),
-                contentDescription = null,
+                contentDescription = contentDescription,
                 contentScale = ContentScale.Crop,
             )
         }

@@ -13,6 +13,15 @@ This is an app demonstrating the official Jetpack Compose Horizontal Pager.
 
 This app shows how straightforward we can set up a Horizontal Pager, feed in whatever content we want, and apply animations.
 
+The implementation focuses on several key areas:
+*   **Endless Scrolling:** A multiplier strategy to simulate an infinite list of items.
+*   **Custom Animations:** Using `graphicsLayer` modifiers to create rich, interactive page transitions.
+*   **Haptic Feedback:** Integrating with `CompositionLocal` to trigger tactile feedback on page changes.
+*   **Accessibility:** Providing dynamic, localized content descriptions for each page, including an "active" state indicator for the current item. Supports TalkBack users by allowing them to double-tap any visible page to scroll it into the active position.
+*   **Interaction:** Supports click-to-scroll for all users; tapping a visible page item will automatically scroll it to the center.
+*   **Responsive Layout:** Ensuring a consistent look and feel across different screen sizes, including tablets, with width constraints.
+*   **Robustness:** Gracefully handling empty state scenarios.
+
 No more custom views, adapters, fragments and complex lifecycle handling! Imagine how much extra work you need to build this using XML Views?
 
 &nbsp;&nbsp;
@@ -71,7 +80,7 @@ The following `LaunchedEffect` can perform haptic feedback during a page-change 
 
 
 ```
-    var currentPageIndex by remember { mutableStateOf(0) }
+    var currentPageIndex by remember { mutableIntStateOf(initialPage) }
     val hapticFeedback = LocalHapticFeedback.current
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { currentPage ->
@@ -92,7 +101,9 @@ The `snapshotFlow` approach was recommended by the previous Accompanist document
 
 ## Endless Pager
 
-By manipulating the `pagerState`, we can make the pager scroll endlessly. We simply multiply the original number of pages by a relatively large number, set the `initialPage` to around the middle of the range, and then, when we need to resolve the index for contents, we take the remainder of the multiplied page index divided by the actual number of items, and we are good to go.
+By manipulating the `pagerState`, we can make the pager scroll endlessly. We simply multiply the original number of pages by a relatively large number, set the `initialPage` to around the middle of the range, and then, when we need to resolve the index for contents, we take the remainder of the multiplied page index divided by the actual number of items.
+
+To ensure the app remains accessible, each page is assigned a unique, localized content description based on its position in the original data set.
 
 ```
     val endlessPagerMultiplier = 1000
@@ -108,6 +119,16 @@ By manipulating the `pagerState`, we can make the pager scroll endlessly. We sim
     ...
     
     val resolvedPageContentIndex = absolutePageIndex % drawables.size
+    
+    PageLayout(
+        modifier = ...,
+        drawable = drawables[resolvedPageContentIndex],
+        contentDescription = context.getString(
+            R.string.content_description_page_item,
+            resolvedPageContentIndex + 1,
+            drawables.size,
+        ),
+    )
 ```
 
 

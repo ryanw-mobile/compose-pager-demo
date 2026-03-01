@@ -10,11 +10,16 @@ This is a Jetpack Compose Android application that demonstrates how to implement
 - **Build System:** Gradle (Kotlin DSL)
 - **Static Analysis:** Detekt, Kotlinter
 
-### Architecture
+### Architecture & Key Features
 - **MainActivity:** Entry point that sets up the theme and triggers `MainScreen`.
 - **MainScreen:** Composable that defines the list of drawables and centers the `AnimatedViewPager`.
-- **AnimatedViewPager:** The core component that manages an endless `HorizontalPager` by using a large multiplier. It also handles haptic feedback on page changes via `snapshotFlow`.
+- **AnimatedViewPager:** The core component that manages an endless `HorizontalPager` by using a large multiplier. 
+  - Handles haptic feedback on page changes via `snapshotFlow`.
+  - Includes a guard clause for empty data sets.
+  - Implements dynamic accessibility labels for each page item, including "active" status for the current item.
+  - Supports click-to-scroll, allowing users (including TalkBack users via double-tap) to tap a page to scroll it to the center.
 - **PagerAnimationModifier:** A custom modifier that applies `graphicsLayer` transformations (alpha, scale, rotationY) based on the pager's scroll offset.
+- **Responsive Design:** Page widths are calculated relative to screen width but constrained by a `maxWidth` for consistency across devices (e.g., tablets).
 - **Theme:** Standard Jetpack Compose theme located in `com.rwmobi.composepager.ui.theme`.
 
 ---
@@ -42,11 +47,14 @@ The project requires **Java 21** and **Android Studio**.
     - Use of `Modifier` parameters in all public composables.
     - Custom animations are encapsulated in dedicated `Modifier` extensions (e.g., `Modifier.pagerAnimation`).
     - Side effects are handled using `LaunchedEffect` and `snapshotFlow` for state observation.
+- **Accessibility:** All UI components should provide meaningful accessibility labels (via `contentDescription`).
+- **Robustness:** UI components should handle edge cases, such as empty data lists, gracefully.
 - **Linting:** Automated formatting and static analysis are part of the build process (`preBuild` depends on `formatKotlin`).
 
 ### Testing Practices
 - **Robot Pattern:** UI tests in `androidTest` follow the Robot pattern to separate test logic from UI selection.
 - **Compose UI Testing:** Uses `createAndroidComposeRule` for interacting with the Compose UI.
+- **Interaction Testing:** Instrumented tests include verification of user interactions like swipes and the resulting state changes. Note: Controlled swipe distances are used to ensure the pager moves exactly one page at a time.
 - **Managed Devices:** The project is configured to run tests on a managed virtual device (`pixel2Api35`).
 
 ### Project Structure
