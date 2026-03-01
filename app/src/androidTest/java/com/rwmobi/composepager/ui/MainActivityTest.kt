@@ -32,6 +32,27 @@ class MainActivityTest {
     fun appLaunchSuccessfully() {
         with(mainActivityTestRobot) {
             assertViewPagerIsDisplayed()
+            assertPageIsActive(index = 1, total = 9)
+        }
+    }
+
+    @Test
+    fun swipeLeftChangesPage() {
+        with(mainActivityTestRobot) {
+            assertViewPagerIsDisplayed()
+            assertPageIsActive(index = 1, total = 9)
+            swipeLeft()
+            assertPageIsActive(index = 2, total = 9)
+        }
+    }
+
+    @Test
+    fun clickPageChangesPage() {
+        with(mainActivityTestRobot) {
+            assertViewPagerIsDisplayed()
+            assertPageIsActive(index = 1, total = 9)
+            performClickOnPage(index = 2, total = 9)
+            assertPageIsActive(index = 2, total = 9)
         }
     }
 }
