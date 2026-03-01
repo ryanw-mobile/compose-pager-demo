@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import com.rwmobi.composepager.R
 import com.rwmobi.composepager.ui.pagerAnimation
@@ -43,7 +44,7 @@ internal fun AnimatedViewPager(
             modifier = modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
-            Text(text = "No content available")
+            Text(text = stringResource(id = R.string.empty_state_message))
         }
         return
     }

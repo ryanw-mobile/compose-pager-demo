@@ -48,6 +48,7 @@ The project requires **Java 21** and **Android Studio**.
     - Custom animations are encapsulated in dedicated `Modifier` extensions (e.g., `Modifier.pagerAnimation`).
     - Side effects are handled using `LaunchedEffect` and `snapshotFlow` for state observation.
 - **Accessibility:** All UI components should provide meaningful accessibility labels (via `contentDescription`).
+- **Localization:** All user-facing strings should be stored in `strings.xml` to support internationalization. Avoid hardcoded strings in Composable functions.
 - **Robustness:** 
     - UI components should handle edge cases, such as empty data lists, gracefully.
     - Managed coroutine jobs should be used for animations to prevent race conditions during rapid user interactions (e.g., TalkBack double-taps).
