@@ -9,7 +9,7 @@ activity-compose = "1.13.0"
 compose-bom = "2026.08.00"
 kotlin = "2.4.10"
 testRules = "1.7.0"
-kotlinter = "5.5.0"
+kotlinter = "5.7.0"
 detekt = "1.23.8"
 
 # App configurations, not dependencies
