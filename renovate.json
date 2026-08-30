@@ -43,5 +43,6 @@
   ],
   "automerge": true,
   "platformAutomerge": true,
-  "automergeType": "branch"
+  "automergeType": "branch",
+  "platformCommit": "enabled"
 }

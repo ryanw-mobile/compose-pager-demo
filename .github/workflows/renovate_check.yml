@@ -20,7 +20,24 @@ jobs:
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
+      # Skips the Gradle/emulator steps below entirely for updates that
+      # can't possibly affect the app (GitHub Actions digest bumps, etc.) -
+      # so e.g. an action digest bump doesn't pay for a full Gradle build +
+      # emulator boot it has no way of affecting.
+      - name: Detect build-relevant changes
+        id: filter
+        uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4
+        with:
+          base: main
+          filters: |
+            code:
+              - 'app/**'
+              - 'gradle/**'
+              - '*.gradle.kts'
+              - 'gradle.properties'
+
       - name: set up JDK 21
+        if: steps.filter.outputs.code == 'true'
         uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6
         with:
           distribution: 'corretto'
@@ -28,13 +45,17 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
+        if: steps.filter.outputs.code == 'true'
         run: chmod +x gradlew
 
       - name: Install Xvfb
+        if: steps.filter.outputs.code == 'true'
         run: sudo apt-get install -y xvfb
 
       - name: Debug Android Test
+        if: steps.filter.outputs.code == 'true'
         run: xvfb-run ./gradlew :app:pixel2Api35DebugAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu=swiftshader_indirect -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true -Pandroid.experimental.testOptions.managedDevices.maxConcurrentDevices=1 -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=180
 
       - name: Gradle Check
+        if: steps.filter.outputs.code == 'true'
         run: ./gradlew check assembleDebug
