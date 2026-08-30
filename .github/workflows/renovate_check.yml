@@ -11,13 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Enable KVM group perms
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-          ls /dev/kvm
-
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       # Skips the Gradle/emulator steps below entirely for updates that
@@ -35,6 +28,17 @@ jobs:
               - 'gradle/**'
               - '*.gradle.kts'
               - 'gradle.properties'
+
+      # Moved here from before checkout (per Amazon Q review on a sibling
+      # repo's PR) so KVM isn't configured when no build/emulator step is
+      # going to run for this update.
+      - name: Enable KVM group perms
+        if: steps.filter.outputs.code == 'true'
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          ls /dev/kvm
 
       - name: set up JDK 21
         if: steps.filter.outputs.code == 'true'
